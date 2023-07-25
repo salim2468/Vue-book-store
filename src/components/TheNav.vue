@@ -22,7 +22,7 @@ export default{
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="{name:'About'}"> About</router-link>
+            <router-link class="nav-link" :to="{name:'About'}"> About</router-link>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Features</a>

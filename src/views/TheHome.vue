@@ -44,12 +44,12 @@ export default {
   },
   methods: {
     async getBooks() {
-      console.log("getBooks");
+      // console.log("getBooks");
       const resoponse = await axiosInstance.get("books");
       if (resoponse.status === 200) {
         this.books = resoponse.data.data;
         this.loading = false;
-        console.log(this.books);
+        // console.log(this.books);
       }
     },
     goToDetail(book){
