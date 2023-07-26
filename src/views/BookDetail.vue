@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <!-- Book -->
-    <div class="top-container" v-if="!loading">
+    <div class="top-container"  v-if="!loading">
       <table>
         <tr>
           <td rowspan="3">
@@ -10,7 +10,6 @@
           <td>
             <h5>{{ book?.attributes.name }}</h5>
           </td>
-          <!-- <td>{{book.type}}</td> -->
         </tr>
         <tr>
           <td>Publication year: {{ book.attributes.publication_year }}</td>
@@ -21,6 +20,23 @@
           </td>
         </tr>
       </table>
+
+      <div style="margin-left:10px;">
+        <table>
+          <tr>
+            <td></td>
+          </tr>
+          <tr>
+            <td><button @click="goToUpdate()">Update</button></td>
+
+          </tr>
+          <tr>
+            <td><button @click="deleteBook()"> Delete</button></td>
+            
+          </tr>
+        </table>
+      </div>
+
     </div>
     <div class="top-container" v-if="!loading">
       <p>{{ book.attributes.description }}</p>
@@ -28,7 +44,7 @@
     <br />
     <h5>Authors:</h5>
     <div class="top-container" v-if="!loading">
-      <table v-for="author in book.attributes.author" :key="author.id">
+      <table v-for="author in book.attributes.authors" :key="author.id">
         <tr>
           <td
             style="display: flex; justify-content: center; align-items: center;"
@@ -58,6 +74,7 @@ export default {
     return {
       book: {},
       loading: true,
+      id:null,
     };
   },
   mounted() {
@@ -66,14 +83,28 @@ export default {
   },
   methods: {
     async getBookDetails() {
-      const id = this.$route.params.id;
-      const resoponse = await axiosInstance.get(`books/${id}`);
+      this.id = this.$route.params.id;
+      const resoponse = await axiosInstance.get(`books/${this.id}`);
       if (resoponse.status === 200) {
         this.book = resoponse.data.data;
         this.loading = false;
-        console.log(this.book, "iisnfkjasbfkjasbkjf");
+        // console.log(this.book, "iisnfkjasbfkjasbkjf");
       }
     },
+    goToUpdate(){
+      console.log(this.book,"this.book from goToUpdate");
+            this.$router.push({name:"updateBook",params:{id:this.id}});
+
+    },
+    async deleteBook(){
+      try{
+        const resoponse = await axiosInstance.delete(`books/${this.id}`);
+        console.log(resoponse.data.message);
+        this.$router.push({name:"Home"});
+      }catch (e) {
+        console.log(e);
+      }
+    }
   },
 };
 </script>
@@ -90,6 +121,7 @@ export default {
   display: flex;
   flex-direction: row;
   margin-top: 2px;
+  /* justify-content: left; */
 }
 td {
   padding: 16px;
