@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import TheHome from "../views/TheHome.vue";
 import TheAbout from "../views/TheAbout.vue";
-import AddBook from "../views/AddBook.vue";
-import SearchBook from "../views/SearchBook.vue";
-import BookDetail from "../views/BookDetail.vue";
-import UpdateBook from "../views/UpdateBook.vue";
+import AllBooks from "../views/book/AllBooks.vue";
+import AddBook from "../views/book/AddBook.vue";
+import SearchBook from "../views/book/SearchBook.vue";
+import BookDetail from "../views/book/BookDetail.vue";
+import UpdateBook from "../views/book/UpdateBook.vue";
 
 
 
@@ -19,6 +20,11 @@ const routes = [
       path: "/about",
       name: "About",
       component: TheAbout,
+    },
+    {
+      path: "/books",
+      name: "AllBooks",
+      component: AllBooks,
     },
     {
       path: "/search",

@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import axiosInstance from "../axios/axios";
-import BookCard from "../components/BookCard.vue";
+import axiosInstance from "../../axios/axios";
+import BookCard from "../../components/BookCard.vue";
 
 export default {
   

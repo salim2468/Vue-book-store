@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import axiosInstance from "../axios/axios";
+import axiosInstance from "../../axios/axios";
 
 export default {
   name: "AddBook",

@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import axiosInstance from "../axios/axios";
-import BookCard from "../components/BookCard.vue";
+import axiosInstance from "../../axios/axios";
+import BookCard from "../../components/BookCard.vue";
 export default {
-  name: "TheHome",
+  name: "AllBooks",
   components:{BookCard},
   data() {
     return {

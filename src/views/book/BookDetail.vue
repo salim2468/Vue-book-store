@@ -5,7 +5,7 @@
       <table>
         <tr>
           <td rowspan="3">
-            <img src="../assets/logo.svg" height="120" width="100" />
+            <img src="../../assets/logo.svg" height="120" width="100" />
           </td>
           <td>
             <h5>{{ book?.attributes.name }}</h5>
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axiosInstance from "../axios/axios";
+import axiosInstance from "../../axios/axios";
 
 export default {
   name: "BookDetail",

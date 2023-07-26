@@ -1,8 +1,7 @@
 <template>
   <div class="main-container">
     <!-- <p>Book</p> -->
-    <form class="form-container" v-if="!loading">
-      <!-- {{ book }} -->
+    <form class="form-container">
       <div class="mb-3">
         <label class="form-label">Book Name</label>
         <input
@@ -31,18 +30,8 @@
           v-model="publication_year"
         />
       </div>
-      <div class="mb-3">
-        <label class="form-label">Price</label>
-        <input
-          type="number"
-          class="form-control"
-          id="exampleInputPassword1"
-          v-model="price"
-        />
-      </div>
       <!-- @change="changeAuthor($event)" -->
       <label for="cars">Select Authors</label>
-      <br>
       <select v-if="!authorsLoading" @change="changeAuthor($event)" required>
         <option v-for="author in authors" :key="author.id" :value="author.id">
           {{ author.attributes.name }}
@@ -50,16 +39,7 @@
       </select>
 
       <p>Selected Authors:</p>
-      <ul
-        v-if="selectedAuthors.length > 0"
-        style="
-          display: flex;
-          flex-wrap: wrap;
-          background: green;
-          padding: 10px 2px;
-          background: white;
-        "
-      >
+      <ul v-if="selectedAuthors.length>0" style="display: flex; flex-wrap: wrap; background:green;padding:10px 2px;background:white;">
         <li v-for="item in selectedAuthors" :key="item">
           <p @click="removeSelectedAuthors(item)" class="name-card">
             {{ authors.find((i) => item == i.id).attributes.name }}
@@ -70,103 +50,98 @@
       <button
         type="submit"
         class="btn btn-outline-secondary"
-        @click="updateBook()"
+        @click="addNewBook"
       >
-        UpdateBook
+        Add
       </button>
+      {{ selectedAuthorsName }}
+
+      <!-- {{ selectedAuthors ? selectedAuthors: "chaia" }} -->
     </form>
+    <!-- Name:{{ name }} Description:{{ description }} Publication:{{publication_year}} -->
   </div>
 </template>
 
-
-
 <script>
-import { onUpdated } from "vue";
-import axiosInstance from "../axios/axios";
+import axiosInstance from "../../axios/axios";
 
 export default {
-  name: "UpdateBook",
-
+  name: "AddBook",
   data() {
     return {
       name: null,
       description: null,
       publication_year: null,
-      price: null,
       authors: null,
       authorsLoading: true,
       selectedAuthors: [],
-      loading: true,
-      id: null,
-      book: {},
     };
   },
-  mounted() {
-    this.id = this.$route.params.id;
-    this.getAuthors();
-    this.getBookDetails();
-  },
   methods: {
+    async addNewBook(event) {
+      event.preventDefault();
+      console.log("button clicked");
+      if (
+        this.name === null ||
+        this.description === null ||
+        this.publication_year === null
+      ) {
+        alert("Please fill up form");
+      }
+      const newBook = {
+        name: this.name,
+        description: this.description,
+        publication_year: this.publication_year,
+        authors:this.selectedAuthors,
+      };
+      try {
+        const response = await axiosInstance.post("books", newBook);
+        console.log(response.data);
+        this.name = "";
+        this.description = "";
+        this.publication_year = "";
+        this.selectedAuthors =[];
+      } catch (e) {
+        console.log(e);
+      }
+    },
     async getAuthors() {
       const response = await axiosInstance.get("authors");
+      console.log("getAuthors-------->>>>>");
+      console.log(this.authors);
       this.authors = response.data.data;
+      console.log("getAuthors-------->>>>>");
+      console.log(this.authors);
       this.authorsLoading = false;
-    },
-    async getBookDetails() {
-      const resoponse = await axiosInstance.get(`books/${this.id}`);
-      if (resoponse.status === 200) {
-        this.book = resoponse.data.data;
-        this.name = this.book.attributes.name;
-        this.description = this.book.attributes.description;
-        this.publication_year = this.book.attributes.publication_year;
-        this.price = this.book.attributes.price;
-        this.selectedAuthors =this.book.attributes.authors.map(
-          (auth) => auth.id
-        );
-        this.loading = false;
-      }
     },
     changeAuthor(event) {
       if (!this.selectedAuthors.includes(event.target.value))
         this.selectedAuthors.push(event.target.value);
+      // const matchAuthor = this.authors.find((author)=>author.id === event.target.value);
+      // this.selectedAuthorsName = matchAuthor.attributes.name;
     },
     removeSelectedAuthors(id) {
       this.selectedAuthors = this.selectedAuthors.filter((item) => item !== id);
     },
-    async updateBook() {
-      const updatedBook = {
-        name: this.name,
-        description: this.description,
-        publication_year: this.publication_year,
-        price: this.price,
-        authors: this.selectedAuthors,
-      };
-      try{
-        const response = await axiosInstance.put(`/books/${this.id}`,updatedBook);
-        this.getBookDetails();
-      }catch (e) {
-        console.log(e);
-      }
-
-    },
+  },
+  mounted() {
+    this.getAuthors();
   },
 };
 </script>
 
-<style>
+<style scoped>
 .main-container {
   display: flex;
   flex: 1;
   flex-direction: column;
   margin-top: 2px;
 }
-
 .form-container {
   background: #f8f8f8;
   padding: 8px 16px;
 }
-
-select{
+select {
   padding: 8px;
   margin-left: 12px;
 }
