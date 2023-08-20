@@ -1,13 +1,15 @@
 <script>
-export default{
-  name:'TheNav'
-}
+export default {
+  name: "TheNav",
+};
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <router-link class="navbar-brand" :to="{name:'Home'}">Book Store</router-link>
+      <router-link class="navbar-brand" :to="{ name: 'TheDashboard' }"
+        >Book Store</router-link
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -22,7 +24,9 @@ export default{
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{name:'About'}"> About</router-link>
+            <router-link class="nav-link" :to="{ name: 'About' }">
+              About</router-link
+            >
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Features</a>
@@ -33,8 +37,14 @@ export default{
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li> -->
+
         </ul>
       </div>
+        <div>
+<router-link :to="{ name: 'About' }" style="text-decoration:none;color:black;">Logout</router-link>
+</div>
+
+     
     </div>
   </nav>
 </template>

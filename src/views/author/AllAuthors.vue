@@ -1,9 +1,9 @@
 
 <template>
   <div class="home-container flex ">
-    <h4>Author </h4><span v-if="books">Total count ({{books.length}})</span> 
+    <h4>Author </h4><span v-if="authors">Total count ({{authors.length}})</span> 
     <div class="book-container flex">
-      <BookCard v-for="book in books" :key="book.id" :book="book" @click="goToDetail(book)"/>
+      <BookCard v-for="author in authors" :key="author.id" :author="author" @click="goToDetail(author)"/>
     </div>
   </div>
 
@@ -12,7 +12,7 @@
   <!-- <div class="home-container">
     <h4>Books</h4>
     <div class="book-container">
-      <div class="card" v-for="book in books" :key="book.id">
+      <div class="card" v-for="book in authors" :key="book.id">
         <div class="image-container">
           <img src="../assets/logo.svg" />
         </div>
@@ -29,32 +29,32 @@
 
 <script>
 import axiosInstance from "../../axios/axios";
-import BookCard from "../../components/BookCard.vue";
+import AuthorCard from "../../components/AuthorCard.vue";
 export default {
-  name: "AllBooks",
-  components:{BookCard},
+  name: "AllAuthors",
+  components:{AuthorCard},
   data() {
     return {
       loading: true,
-      books: null,
+      authors: null,
     };
   },
   mounted() {
-    this.getBooks();
+    this.getAuthors();
   },
   methods: {
-    async getBooks() {
-      // console.log("getBooks");
-      const resoponse = await axiosInstance.get("books");
+    async getAuthors() {
+      // console.log("getAuthors");
+      const resoponse = await axiosInstance.get("authors");
       if (resoponse.status === 200) {
-        this.books = resoponse.data.data;
+        this.authors = resoponse.data.data;
         this.loading = false;
-        // console.log(this.books);
+        // console.log(this.authors);
       }
     },
-    goToDetail(book){
-      console.log(book);
-      this.$router.push({name:"bookDetail",params:{id:book.id},props:{book:'Jhon'}});
+    goToDetail(author){
+      console.log(author);
+      // this.$router.push({name:"bookDetail",params:{id:book.id},props:{book:'Jhon'}});
     }
   },
 };
