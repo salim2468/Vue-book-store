@@ -7,7 +7,7 @@ export default {
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <router-link class="navbar-brand" :to="{ name: 'TheDashboard' }"
+      <router-link class="navbar-brand" :to="{ name: 'Home' }"
         >Book Store</router-link
       >
       <button

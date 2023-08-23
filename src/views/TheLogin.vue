@@ -16,7 +16,7 @@
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
         <br>
-        <button>Log In</button>
+        <button @click="login()">Log In</button>
     </form>
 
 </template>
@@ -27,6 +27,11 @@
 
 export default {
 name:'TheLogin',
+methods:{
+  login(){
+    this.$router.push({name:'Home'});
+  }
+}
 }
 </script>
 

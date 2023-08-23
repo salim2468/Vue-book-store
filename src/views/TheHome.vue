@@ -1,7 +1,7 @@
 
 <template>
   <div class="home-container flex ">
-   <h4> Home</h4>
+   <h4> Home component</h4>
     <h4>Books </h4><span v-if="books">Total count ({{books.length}})</span> 
     <div class="book-container flex">
       <BookCard v-for="book in books" :key="book.id" :book="book" @click="goToDetail(book)"/>
