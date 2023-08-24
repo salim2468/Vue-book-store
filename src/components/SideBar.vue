@@ -32,7 +32,7 @@
           >
         </li>
         <li>
-          <router-link :to="{ name: 'AddBook' }" class="router-link">
+          <router-link :to="{ name: 'AddAuthor' }" class="router-link">
             <span class="material-symbols-outlined"> add_circle </span>
             <span> Add Author</span></router-link
           >

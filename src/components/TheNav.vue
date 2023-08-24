@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'Home' }"
         >Book Store</router-link
@@ -28,23 +28,16 @@ export default {
               About</router-link
             >
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li> -->
-
         </ul>
       </div>
-        <div>
-<router-link :to="{ name: 'About' }" style="text-decoration:none;color:black;">Logout</router-link>
-</div>
-
-     
+      <div>
+        <router-link
+          :to="{ name: 'Login' }"
+          style="text-decoration: none; color: black"
+          >Logout</router-link
+        >
+      </div>
     </div>
   </nav>
 </template>
+

@@ -1,30 +1,11 @@
 
 <template>
   <div class="home-container flex ">
-    <h4>Author </h4><span v-if="authors">Total count ({{authors.length}})</span> 
-    <div class="book-container flex">
-      <BookCard v-for="author in authors" :key="author.id" :author="author" @click="goToDetail(author)"/>
+    <h4>Authors </h4><span v-if="!loading">Total count ({{authors.length}})</span> 
+    <div class="book-container flex" v-if="!loading">
+      <AuthorCard v-for="author in authors" :key="author.id" :author="author" @click="goToDetail(author)"/>
     </div>
   </div>
-
-
-
-  <!-- <div class="home-container">
-    <h4>Books</h4>
-    <div class="book-container">
-      <div class="card" v-for="book in authors" :key="book.id">
-        <div class="image-container">
-          <img src="../assets/logo.svg" />
-        </div>
-        <br>
-        <h6>{{ book.attributes.name }}</h6>
-        <p class="description">{{ book.attributes.publication_year }}</p>
-      </div>
-    </div>
-  </div> -->
-
-
-
 </template>
 
 <script>
@@ -44,7 +25,7 @@ export default {
   },
   methods: {
     async getAuthors() {
-      // console.log("getAuthors");
+      console.log("getAuthors");
       const resoponse = await axiosInstance.get("authors");
       if (resoponse.status === 200) {
         this.authors = resoponse.data.data;
@@ -52,8 +33,8 @@ export default {
         // console.log(this.authors);
       }
     },
-    goToDetail(author){
-      console.log(author);
+    goToDetail(book){
+      console.log(book);
       // this.$router.push({name:"bookDetail",params:{id:book.id},props:{book:'Jhon'}});
     }
   },
@@ -64,6 +45,8 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin: 0 0 80px 0;
+
 }
 .book-container {
   display: flex; flex-wrap: wrap; background: #F8F8F8	;justify-content: space-evenly;

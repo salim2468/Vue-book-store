@@ -11,34 +11,38 @@ import SearchBook from "../views/book/SearchBook.vue";
 import BookDetail from "../views/book/BookDetail.vue";
 import UpdateBook from "../views/book/UpdateBook.vue";
 
+
+import AddAuthor from "../views/author/AddAuthor.vue";
 import AllAuthors from "../views/author/AllAuthors.vue";
 
+
+
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: TheHome,
-  // },
   {
     path: "/login",
-    name: "TheLogin",
+    name: "Login",
     component: TheLogin,
   },
   {
     path: "/",
     name: "TheDashboard",
     component: TheDashboard,
+    redirect:{ name:'Home'},
     children:[
       {
-        path: "/home",
+        path: "/",
         name: "Home",
         component: TheHome,
       },
       {
-        path: "/author",
+        path: "/authors",
         name: "AllAuthors",
         component: AllAuthors,
-        props:true,
+      },
+      {
+        path: "/add-author",
+        name: "AddAuthor",
+        component: AddAuthor,
       },
       {
         path: "/about",
@@ -115,11 +119,11 @@ const routes = [
   //   props: true,
   // },
   // ---------- Authors section ----------
-  {
-    path: "/authors",
-    name: "AllAuthors",
-    component: AllAuthors,
-  },
+  // {
+  //   path: "/authors",
+  //   name: "AllAuthors",
+  //   component: AllAuthors,
+  // },
   // {
   //   path: "/authors",
   //   name: "AllAuthors",

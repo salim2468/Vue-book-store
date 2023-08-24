@@ -64,6 +64,8 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin: 0 0 80px 0;
+
 }
 .book-container {
   display: flex; flex-wrap: wrap; background: #F8F8F8	;justify-content: space-evenly;

@@ -19,7 +19,7 @@ name:'TheDashboard',
 }
 </script>
 
-<style>
+<style scoped>
 .con {
   display: flex;
   margin-inline: 0 !important;

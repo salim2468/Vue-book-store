@@ -4,9 +4,14 @@
     <div class="top-container"  v-if="!loading">
       <table>
         <tr>
-          <td rowspan="3">
+          <td rowspan="4">
             <img src="../../assets/logo.svg" height="120" width="100" />
           </td>
+          <td>
+          
+          </td>
+        </tr>
+        <tr>
           <td>
             <h5>{{ book?.attributes.name }}</h5>
           </td>
@@ -22,16 +27,16 @@
       </table>
 
       <div style="margin-left:10px;">
-        <table>
+        <table >
           <tr>
             <td></td>
           </tr>
           <tr>
-            <td><button @click="goToUpdate()">Update</button></td>
+            <td><button style="button" @click="goToUpdate()">Update</button></td>
 
           </tr>
           <tr>
-            <td><button @click="deleteBook()"> Delete</button></td>
+            <td><button style="button" @click="deleteBook()"> Delete</button></td>
             
           </tr>
         </table>
@@ -57,7 +62,7 @@
           </td>
         </tr>
         <tr>
-          <td>{{ author.name }}</td>
+          <td style="text-align:center">{{ author.name }}</td>
         </tr>
       </table>
     </div>
@@ -109,7 +114,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .main-container {
   display: flex;
   flex: 1;
@@ -125,5 +130,12 @@ export default {
 }
 td {
   padding: 16px;
+}
+button{
+  background: grey;
+  width: 100px;
+  border-radius: 8px;
+  padding: 4px 0;;
+  border: none;
 }
 </style>

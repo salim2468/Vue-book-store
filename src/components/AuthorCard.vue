@@ -1,44 +1,32 @@
 <template>
- <div class="card">
-        <div class="image-container">
-          <img src="../assets/book.jpeg" />
-        </div>
-        <br>
-        <h6>{{ author.attributes.name }}</h6>
-        <!-- <p class="description">{{ book.attributes.publication_year }}</p> -->
-      </div>
+      <table style="margin:18px 8px; width:200px;" >
+        <tr>
+          <td
+            style="display: flex; justify-content: center; align-items: center;"
+          >
+            <img
+              src="../assets/person2.jpg"
+              alt="image"
+              style="height: 90px; width:90px; object-fit: cover; border-radius:50%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align:center">{{ author.attributes.name }}</td>
+        </tr>
+      </table>
+
+
 </template>
 
 <script>
 
 export default {
   name: "AuthorCard",
-  props:['book'],
+  props:['author'],
 }
 </script>
 
 <style scoped>
-.card {
-  height: auto;
-  width: 200px;
-
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-}
-.card:hover{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.image-container {
-  width: 100%;
-  height: 100px;
-}
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.description {
-  font-size: 15px;
-}
+ 
 </style>
