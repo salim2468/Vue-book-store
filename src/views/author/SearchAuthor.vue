@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    Search Books You want
+    Search Author You want
     <form class="form-container">
       <div class="mb-3" style="width: 200px;margin-right:4px; flex: 1">
         <input
@@ -11,10 +11,10 @@
           placeholder="Enter here"
         />
       </div>
-      <button type="submit" class="btn btn-outline-secondary"  style="height:40px;" @click="getSearchedBook">Search</button>
+      <button type="submit" class="btn btn-outline-secondary"  style="height:40px;" @click="getSearchedAuthor">Search</button>
     </form>
      <div class="book-container flex">
-      <BookCard v-for="book in books" :key="book.id" :book="book" @click="goToDetail(book)"/>
+      <AuthorCard v-for="author in authors" :key="author.id" :author="author" @click="goToDetail(author)"/>
     </div>
     <div class="sub-container">
 
@@ -24,29 +24,37 @@
 
 <script>
 import axiosInstance from "../../axios/axios";
-import BookCard from "../../components/BookCard.vue";
+import AuthorCard from "../../components/AuthorCard.vue";
 
 export default {
   
-  name: "SearchBook",
+  name: "SearchAuthor",
   data(){
     return{
       searchedText:null,
-      books:null,
+      authors:null,
     }
   },
   components:{
-    BookCard,
+    AuthorCard,
   },
   methods:{
-    async getSearchedBook(e){
+    async getSearchedAuthor(e){
       e.preventDefault();
-      const resoponse = await axiosInstance.get(`books/search/{searchedText}`, {
-          params: { search: this.searchedText },
-        });
+      if(this.searchedText === null || this.searchedText.length === 0){
+        alert('Please type you want to search');
+        return;
+      }
+
+      console.log('getauthor=>',this.searchedText);
+      const resoponse = await axiosInstance.get(`authors/search/${this.searchedText}`, 
+        // {
+        //   params: { search: this.searchedText },
+        // }
+        );
       if (resoponse.status === 200) {
-        this.books = resoponse.data.data;
-        console.log(this.books);
+        this.authors = resoponse.data.data;
+        console.log(this.authors,"this.authors");
       }
     }
   }
