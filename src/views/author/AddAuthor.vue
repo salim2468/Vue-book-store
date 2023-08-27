@@ -10,6 +10,7 @@
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           v-model="name"
+          required
         />
       </div>
       
@@ -43,6 +44,7 @@ export default {
         this.name === null
       ) {
         alert("Please fill up form");
+        return;
       }
       const newAuthor = {
         name: this.name,

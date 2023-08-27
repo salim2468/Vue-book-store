@@ -1,19 +1,23 @@
 
 <template>
+
   <div class="home-container flex ">
     <h4>Authors </h4><span v-if="!loading">Total count ({{authors.length}})</span> 
     <div class="book-container flex" v-if="!loading">
       <AuthorCard v-for="author in authors" :key="author.id" :author="author" @click="goToDetail(author)"/>
     </div>
   </div>
+
 </template>
 
 <script>
 import axiosInstance from "../../axios/axios";
 import AuthorCard from "../../components/AuthorCard.vue";
+import VueBasicAlert from 'vue-basic-alert'
+
 export default {
   name: "AllAuthors",
-  components:{AuthorCard},
+  components:{AuthorCard,VueBasicAlert},
   data() {
     return {
       loading: true,
@@ -33,9 +37,9 @@ export default {
         // console.log(this.authors);
       }
     },
-    goToDetail(book){
-      console.log(book);
-      // this.$router.push({name:"bookDetail",params:{id:book.id},props:{book:'Jhon'}});
+    goToDetail(author){
+      console.log(author);
+      this.$router.push({name:"AuthorDetail",params:{id:author.id},props:{author:'Jhon'}});
     }
   },
 };
@@ -45,7 +49,8 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: 0 0 80px 0;
+  margin: 0 8px 80px 0;
+  
 
 }
 .book-container {

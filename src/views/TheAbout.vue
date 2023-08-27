@@ -22,5 +22,7 @@ name:'TheAbout'
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin: 8px;
+
 }
 </style>

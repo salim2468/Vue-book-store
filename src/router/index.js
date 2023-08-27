@@ -14,6 +14,8 @@ import UpdateBook from "../views/book/UpdateBook.vue";
 import AddAuthor from "../views/author/AddAuthor.vue";
 import AllAuthors from "../views/author/AllAuthors.vue";
 import SearchAuthor from "../views/author/SearchAuthor.vue";
+import AuthorDetail from "../views/author/AuthorDetail.vue";
+
 
 const routes = [
   {
@@ -46,6 +48,12 @@ const routes = [
         path: "/search-author",
         name: "SearchAuthor",
         component: SearchAuthor,
+      },
+      {
+        path: "/author/:id",
+        name: "AuthorDetail",
+        component: AuthorDetail,
+        props: true,
       },
       {
         path: "/about",

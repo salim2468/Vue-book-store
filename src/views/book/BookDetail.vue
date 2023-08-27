@@ -1,15 +1,13 @@
 <template>
   <div class="main-container">
     <!-- Book -->
-    <div class="top-container"  v-if="!loading">
+    <div class="top-container" v-if="!loading">
       <table>
         <tr>
           <td rowspan="4">
             <img src="../../assets/logo.svg" height="120" width="100" />
           </td>
-          <td>
-          
-          </td>
+          <td></td>
         </tr>
         <tr>
           <td>
@@ -26,22 +24,23 @@
         </tr>
       </table>
 
-      <div style="margin-left:10px;">
-        <table >
+      <div style="margin-left: auto">
+        <table>
           <tr>
             <td></td>
           </tr>
           <tr>
-            <td><button style="button" @click="goToUpdate()">Update</button></td>
-
+            <td>
+              <button class="btn btn-secondary" @click="goToUpdate()">Update</button>
+            </td>
           </tr>
           <tr>
-            <td><button style="button" @click="deleteBook()"> Delete</button></td>
-            
+            <td>
+              <button class="btn btn-secondary" @click="deleteBook()">Delete</button>
+            </td>
           </tr>
         </table>
       </div>
-
     </div>
     <div class="top-container" v-if="!loading">
       <p>{{ book.attributes.description }}</p>
@@ -52,17 +51,22 @@
       <table v-for="author in book.attributes.authors" :key="author.id">
         <tr>
           <td
-            style="display: flex; justify-content: center; align-items: center;"
+            style="display: flex; justify-content: center; align-items: center"
           >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS36PznHOReV7k4Emp3q2-HLvlcUrVxQiIRGUpwGsyE2Q&s"
               alt="image"
-              style="height: 80px; border-radius:50%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+              style="
+                height: 80px;
+                border-radius: 50%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              "
             />
           </td>
         </tr>
         <tr>
-          <td style="text-align:center">{{ author.name }}</td>
+          <td style="text-align: center">{{ author.name }}</td>
         </tr>
       </table>
     </div>
@@ -79,7 +83,7 @@ export default {
     return {
       book: {},
       loading: true,
-      id:null,
+      id: null,
     };
   },
   mounted() {
@@ -93,23 +97,21 @@ export default {
       if (resoponse.status === 200) {
         this.book = resoponse.data.data;
         this.loading = false;
-        // console.log(this.book, "iisnfkjasbfkjasbkjf");
       }
     },
-    goToUpdate(){
-      console.log(this.book,"this.book from goToUpdate");
-            this.$router.push({name:"updateBook",params:{id:this.id}});
-
+    goToUpdate() {
+      console.log(this.book, "this.book from goToUpdate");
+      this.$router.push({ name: "updateBook", params: { id: this.id } });
     },
-    async deleteBook(){
-      try{
+    async deleteBook() {
+      try {
         const resoponse = await axiosInstance.delete(`books/${this.id}`);
         console.log(resoponse.data.message);
-        this.$router.push({name:"Home"});
-      }catch (e) {
+        this.$router.push({ name: "Home" });
+      } catch (e) {
         console.log(e);
       }
-    }
+    },
   },
 };
 </script>
@@ -119,6 +121,7 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin: 8px;
 }
 .top-container {
   background: #f8f8f8;
@@ -126,16 +129,8 @@ export default {
   display: flex;
   flex-direction: row;
   margin-top: 2px;
-  /* justify-content: left; */
 }
 td {
   padding: 16px;
-}
-button{
-  background: grey;
-  width: 100px;
-  border-radius: 8px;
-  padding: 4px 0;;
-  border: none;
 }
 </style>

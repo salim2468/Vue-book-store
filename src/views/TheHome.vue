@@ -84,7 +84,7 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: 0 0 80px 0;
+  margin: 0 8px 80px 0;
 }
 .book-container {
   display: flex;
