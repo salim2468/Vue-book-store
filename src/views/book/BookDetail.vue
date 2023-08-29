@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <!-- Book -->
     <div class="top-container" v-if="!loading">
       <table>
         <tr>
@@ -31,12 +30,16 @@
           </tr>
           <tr>
             <td>
-              <button class="btn btn-secondary" @click="goToUpdate()">Update</button>
+              <button class="btn btn-secondary" @click="goToUpdate()">
+                Update
+              </button>
             </td>
           </tr>
           <tr>
             <td>
-              <button class="btn btn-secondary" @click="deleteBook()">Delete</button>
+              <button class="btn btn-secondary" @click="deleteBook()">
+                Delete
+              </button>
             </td>
           </tr>
         </table>
@@ -70,15 +73,24 @@
         </tr>
       </table>
     </div>
+    OtherInfo
+    <div class="card-container" v-if="!loading">
+      <OtherInfo :title="'Page No'" :data="book.attributes.page_no" :icon="'auto_stories'"/>
+      <OtherInfo :title="'Language'" :data="book.attributes.language" :icon="'language'"/>
+      <OtherInfo :title="'ISBN'" :data="book.attributes.isbn" :icon="'menu'"/>
+    
+    </div>
   </div>
 </template>
 
 <script>
 import axiosInstance from "../../axios/axios";
+import OtherInfo from "../book/components/OttherInfo.vue";
+
 
 export default {
   name: "BookDetail",
-  // props:['book'],
+  components:{OtherInfo},
   data() {
     return {
       book: {},
@@ -88,7 +100,6 @@ export default {
   },
   mounted() {
     this.getBookDetails();
-    // console.log(this.$route.params.id);
   },
   methods: {
     async getBookDetails() {
@@ -132,5 +143,10 @@ export default {
 }
 td {
   padding: 16px;
+}
+/* Other info card container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

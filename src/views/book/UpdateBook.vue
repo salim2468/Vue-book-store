@@ -1,8 +1,6 @@
 <template>
   <div class="main-container">
-    <!-- <p>Book</p> -->
     <form class="form-container" v-if="!loading">
-      <!-- {{ book }} -->
       <div class="mb-3">
         <label class="form-label">Book Name</label>
         <input
@@ -31,14 +29,45 @@
           v-model="publication_year"
         />
       </div>
-      <div class="mb-3">
-        <label class="form-label">Price</label>
-        <input
-          type="number"
-          class="form-control"
-          id="exampleInputPassword1"
-          v-model="price"
-        />
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label class="form-label">Page Number</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="First name"
+            v-model="page_no"
+          />
+        </div>
+        <div class="col">
+          <label class="form-label">ISNB</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Last name"
+            v-model="isbn"
+          />
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label class="form-label">Price</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="First name"
+            v-model="price"
+          />
+        </div>
+        <div class="col">
+          <label class="form-label">Language</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Last name"
+            v-model="language"
+          />
+        </div>
       </div>
       <!-- @change="changeAuthor($event)" -->
       <label for="cars">Select Authors</label>
@@ -70,7 +99,7 @@
       <button
         type="submit"
         class="btn btn-outline-secondary"
-        @click="updateBook()"
+        @click.prevent="updateBook()"
       >
         UpdateBook
       </button>
@@ -91,7 +120,10 @@ export default {
       name: null,
       description: null,
       publication_year: null,
+      page_no: null,
+      isbn: null,
       price: null,
+      language: null,
       authors: null,
       authorsLoading: true,
       selectedAuthors: [],
@@ -118,7 +150,10 @@ export default {
         this.name = this.book.attributes.name;
         this.description = this.book.attributes.description;
         this.publication_year = this.book.attributes.publication_year;
+        this.page_no = this.book.attributes.page_no;
+        this.isbn = this.book.attributes.isbn;
         this.price = this.book.attributes.price;
+        this.language =this.book.attributes.language;
         this.selectedAuthors =this.book.attributes.authors.map(
           (auth) => auth.id
         );
@@ -137,12 +172,17 @@ export default {
         name: this.name,
         description: this.description,
         publication_year: this.publication_year,
-        price: this.price,
+        page_no :this.page_no ,
+        isbn :this.isbn ,
+        price :this.price ,
+        language :this.language,
         authors: this.selectedAuthors,
       };
+
+      console.log(updatedBook);
       try{
         const response = await axiosInstance.put(`/books/${this.id}`,updatedBook);
-        this.getBookDetails();
+        // this.getBookDetails();
       }catch (e) {
         console.log(e);
       }

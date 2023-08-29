@@ -30,7 +30,46 @@
           v-model="publication_year"
         />
       </div>
-      <!-- @change="changeAuthor($event)" -->
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label class="form-label">Page Number</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="First name"
+            v-model="page_no"
+          />
+        </div>
+        <div class="col">
+          <label class="form-label">ISNB</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Last name"
+            v-model="isbn"
+          />
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label class="form-label">Price</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="First name"
+            v-model="price"
+          />
+        </div>
+        <div class="col">
+          <label class="form-label">Language</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Last name"
+            v-model="language"
+          />
+        </div>
+      </div>
       <label for="cars">Select Authors</label>
       <select v-if="!authorsLoading" @change="changeAuthor($event)" required>
         <option v-for="author in authors" :key="author.id" :value="author.id">
@@ -39,7 +78,16 @@
       </select>
 
       <p>Selected Authors:</p>
-      <ul v-if="selectedAuthors.length>0" style="display: flex; flex-wrap: wrap; background:green;padding:10px 2px;background:white;">
+      <ul
+        v-if="selectedAuthors.length > 0"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          background: green;
+          padding: 10px 2px;
+          background: white;
+        "
+      >
         <li v-for="item in selectedAuthors" :key="item">
           <p @click="removeSelectedAuthors(item)" class="name-card">
             {{ authors.find((i) => item == i.id).attributes.name }}
@@ -54,7 +102,6 @@
       >
         Add
       </button>
-      <!-- {{ selectedAuthorsName }} -->
     </form>
   </div>
 </template>
@@ -69,53 +116,61 @@ export default {
       name: null,
       description: null,
       publication_year: null,
+      page_no: null,
+      isbn: null,
+      price: null,
+      language: null,
       authors: null,
       authorsLoading: true,
       selectedAuthors: [],
     };
   },
   methods: {
-    async addNewBook(event) {
-      event.preventDefault();
-      console.log("button clicked");
+    async addNewBook() {
       if (
         this.name === null ||
         this.description === null ||
-        this.publication_year === null
+        this.publication_year === null ||
+        this.page_no === null ||
+        this.isbn === null ||
+        this.price === null ||
+        this.language === null
       ) {
         alert("Please fill up form");
+        return;
       }
       const newBook = {
         name: this.name,
         description: this.description,
         publication_year: this.publication_year,
-        authors:this.selectedAuthors,
+        page_no :this.page_no,
+        isbn :this.isbn,
+        price :this.price,
+        language :this.language,
+        authors: this.selectedAuthors,
       };
       try {
         const response = await axiosInstance.post("books", newBook);
-        console.log(response.data);
         this.name = "";
         this.description = "";
         this.publication_year = "";
-        this.selectedAuthors =[];
+        this.page_no = "";
+        this.isbn = "";
+        this.price = "";
+        this.language ="";
+        this.selectedAuthors = [];
       } catch (e) {
         console.log(e);
       }
     },
     async getAuthors() {
       const response = await axiosInstance.get("authors");
-      console.log("getAuthors-------->>>>>");
-      console.log(this.authors);
       this.authors = response.data.data;
-      console.log("getAuthors-------->>>>>");
-      console.log(this.authors);
       this.authorsLoading = false;
     },
     changeAuthor(event) {
       if (!this.selectedAuthors.includes(event.target.value))
         this.selectedAuthors.push(event.target.value);
-      // const matchAuthor = this.authors.find((author)=>author.id === event.target.value);
-      // this.selectedAuthorsName = matchAuthor.attributes.name;
     },
     removeSelectedAuthors(id) {
       this.selectedAuthors = this.selectedAuthors.filter((item) => item !== id);
@@ -133,8 +188,7 @@ export default {
   flex: 1;
   flex-direction: column;
   margin-top: 2px;
-    margin: 8px;
-
+  margin: 8px;
 }
 .form-container {
   background: #f8f8f8;
