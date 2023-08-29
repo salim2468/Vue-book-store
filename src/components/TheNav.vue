@@ -5,7 +5,10 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+  <nav
+    class="navbar navbar-expand-lg sticky-top bg-body-tertiary"
+    style="box-shadow: 0px 1px 10px lightgray; margin-bottom:8px;"
+  >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'Home' }"
         >Book Store</router-link
