@@ -120,6 +120,7 @@ export default {
       name: null,
       description: null,
       publication_year: null,
+      genere:null,
       page_no: null,
       isbn: null,
       price: null,
@@ -150,6 +151,7 @@ export default {
         this.name = this.book.attributes.name;
         this.description = this.book.attributes.description;
         this.publication_year = this.book.attributes.publication_year;
+        this.genere = this.book.attributes.genere;
         this.page_no = this.book.attributes.page_no;
         this.isbn = this.book.attributes.isbn;
         this.price = this.book.attributes.price;
@@ -172,6 +174,7 @@ export default {
         name: this.name,
         description: this.description,
         publication_year: this.publication_year,
+        genere: this.genere,
         page_no :this.page_no ,
         isbn :this.isbn ,
         price :this.price ,
@@ -186,7 +189,6 @@ export default {
       }catch (e) {
         console.log(e);
       }
-
     },
   },
 };

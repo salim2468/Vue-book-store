@@ -3,8 +3,9 @@
     <div class="top-container" v-if="!loading">
       <table>
         <tr>
-          <td rowspan="4">
-            <img src="../../assets/logo.svg" height="120" width="100" />
+          <td rowspan="4">    
+            <img  v-if="book.attributes.image_path" :src="book.attributes.image_path"   height="220" width="200"  />
+            <img v-else  src="../../assets/logo.svg" height="120" width="100" />
           </td>
           <td></td>
         </tr>
@@ -22,29 +23,13 @@
           </td>
         </tr>
       </table>
-
-      <div style="margin-left: auto">
-        <table>
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <button class="btn btn-secondary" @click="goToUpdate()">
-                Update
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button class="btn btn-secondary" @click="deleteBook()">
-                Delete
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
     </div>
+    <div style="display:flex; justify-content:end; margin-right background:yellow; ">
+      <UploadBookImage :id="book.id"/>
+      <CircularIconButton :icon="'edit'" @buttonPress="goToUpdate" />
+      <CircularIconButton :icon="'delete'" @buttonPress="deleteBook" />
+    </div>
+
     <div class="top-container" v-if="!loading">
       <p>{{ book.attributes.description }}</p>
     </div>
@@ -75,10 +60,17 @@
     </div>
     OtherInfo
     <div class="card-container" v-if="!loading">
-      <OtherInfo :title="'Page No'" :data="book.attributes.page_no" :icon="'auto_stories'"/>
-      <OtherInfo :title="'Language'" :data="book.attributes.language" :icon="'language'"/>
-      <OtherInfo :title="'ISBN'" :data="book.attributes.isbn" :icon="'menu'"/>
-    
+      <OtherInfo
+        :title="'Page No'"
+        :data="book.attributes.page_no"
+        :icon="'auto_stories'"
+      />
+      <OtherInfo
+        :title="'Language'"
+        :data="book.attributes.language"
+        :icon="'language'"
+      />
+      <OtherInfo :title="'ISBN'" :data="book.attributes.isbn" :icon="'menu'" />
     </div>
   </div>
 </template>
@@ -86,11 +78,13 @@
 <script>
 import axiosInstance from "../../axios/axios";
 import OtherInfo from "../book/components/OttherInfo.vue";
+import CircularIconButton from "../../components/CircularIconButton.vue";
+import UploadBookImage from "../../views/book/components/UploadBookImage.vue";
 
 
 export default {
   name: "BookDetail",
-  components:{OtherInfo},
+  components: { OtherInfo, CircularIconButton ,UploadBookImage },
   data() {
     return {
       book: {},
@@ -132,7 +126,7 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: 0 0px 8px 8px;
+  margin: 0 8px 8px 8px;
 }
 .top-container {
   background: #f8f8f8;

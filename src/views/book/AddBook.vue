@@ -21,14 +21,25 @@
           v-model="description"
         />
       </div>
-      <div class="mb-3">
-        <label class="form-label">Publication Year</label>
-        <input
-          type="text"
-          class="form-control"
-          id="exampleInputPassword1"
-          v-model="publication_year"
-        />
+       <div class="row g-3 mb-3">
+        <div class="col">
+          <label class="form-label">Publication Year</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="First name"
+            v-model="publication_year"
+          />
+        </div>
+        <div class="col">
+          <label class="form-label">Genere</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Last name"
+            v-model="genere"
+          />
+        </div>
       </div>
       <div class="row g-3 mb-3">
         <div class="col">
@@ -86,6 +97,7 @@
           background: green;
           padding: 10px 2px;
           background: white;
+          list-style-type: none;
         "
       >
         <li v-for="item in selectedAuthors" :key="item">
@@ -98,7 +110,7 @@
       <button
         type="submit"
         class="btn btn-outline-secondary"
-        @click="addNewBook"
+        @click.prevent="addNewBook"
       >
         Add
       </button>
@@ -116,6 +128,7 @@ export default {
       name: null,
       description: null,
       publication_year: null,
+      genere:null,
       page_no: null,
       isbn: null,
       price: null,
@@ -131,6 +144,7 @@ export default {
         this.name === null ||
         this.description === null ||
         this.publication_year === null ||
+        this.genere === null ||
         this.page_no === null ||
         this.isbn === null ||
         this.price === null ||
@@ -143,6 +157,7 @@ export default {
         name: this.name,
         description: this.description,
         publication_year: this.publication_year,
+        genere:this.genere,
         page_no: this.page_no,
         isbn: this.isbn,
         price: this.price,
@@ -154,6 +169,7 @@ export default {
         this.name = "";
         this.description = "";
         this.publication_year = "";
+        this.genere = "";
         this.page_no = "";
         this.isbn = "";
         this.price = "";
