@@ -19,12 +19,8 @@
 
     <h6>Authors</h6>
     <span v-if="!loadingAuthor">Total count ({{ authors?.length }})</span>
-    <div class="book-container flex" >
-      <AuthorCard
-        v-for="author in authors"
-        :key="author.id"
-        :author="author"
-      />
+    <div class="book-container flex">
+      <AuthorCard v-for="author in authors" :key="author.id" :author="author" />
     </div>
   </div>
 </template>
@@ -41,7 +37,6 @@ export default {
     return {
       loading: true,
       loadingAuthor: true,
-
       books: null,
       authors: null,
     };
@@ -55,7 +50,6 @@ export default {
       const resoponse = await axiosInstance.get("books");
       if (resoponse.status === 200) {
         this.books = resoponse.data.data;
-        console.log(resoponse.data.data);
         this.loading = false;
       }
     },
@@ -63,7 +57,6 @@ export default {
       const resoponse = await axiosInstance.get("authors");
       if (resoponse.status === 200) {
         this.authors = resoponse.data.data;
-        console.log(resoponse.data.data);
         this.loadingAuthor = false;
       }
     },
@@ -92,26 +85,6 @@ export default {
   background: #f8f8f8;
   justify-content: space-evenly;
 }
-/* .card {
-  height: auto;
-  width: 200px;
-
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-}
-.card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
-/* .image-container {
-  width: 100%;
-  height: 100px;
-} */
-/* img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-} */
 .description {
   font-size: 15px;
 }

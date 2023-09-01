@@ -5,4 +5,13 @@ const  axiosInstance = axios.create({
     "Content-Type":"application/json"
   }
 });
+
+axiosInstance.interceptors.request.use(function(config){
+  
+  const accessToken = localStorage.getItem('adminToken');
+  config.headers.Authorization = `Bearer ${accessToken}`;
+  return config;
+})
+
+
 export default axiosInstance;
