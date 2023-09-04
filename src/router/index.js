@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import TheHome from "../views/TheHome.vue";
 import TheAbout from "../views/TheAbout.vue";
 import TheLogin from "../views/TheLogin.vue";
+import TheRegister from "../views/TheRegister.vue";
+
 import TheDashboard from "../views/TheDashboard.vue";
 
 import AllBooks from "../views/book/AllBooks.vue";
@@ -20,6 +22,12 @@ const routes = [
     path: "/login",
     name: "Login",
     component: TheLogin,
+     meta:{requiresAuth:false}
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: TheRegister,
      meta:{requiresAuth:false}
   },
   {

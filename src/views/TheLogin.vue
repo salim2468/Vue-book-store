@@ -13,7 +13,7 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <form class="body" action="/">
+  <form class="body">
     <h3>Login</h3>
 
     <label for="username">Username</label>
@@ -28,13 +28,15 @@
     />
     <br />
     <button @click.prevent="login">Log In</button>
+
+    <router-link class="nav-link" :to="{ name: 'Register' }">
+      Create Account</router-link
+    >
   </form>
 </template>
 
-
-
 <script>
-import axiosInstance from '../axios/axios';
+import axiosInstance from "../axios/axios";
 
 export default {
   name: "TheLogin",
@@ -46,24 +48,28 @@ export default {
   },
   methods: {
     async login() {
-        if(this.email === "" || this.email === null || this.password === "" ||this.password === null){
-            alert("Please enter the credentials");
-            return
+      if (
+        this.email === "" ||
+        this.email === null ||
+        this.password === "" ||
+        this.password === null
+      ) {
+        alert("Please enter the credentials");
+        return;
+      }
+      try {
+        const data = {
+          email: this.email,
+          password: this.password,
+        };
+        const resoponse = await axiosInstance.post("login", data);
+        if (resoponse.status === 200) {
+          localStorage.setItem("adminToken", resoponse.data.token);
+          this.$router.push({ name: "Home" });
         }
-        try{
-            const data = {
-                'email' : this.email,
-                'password' : this.password
-            };
-            const resoponse =await  axiosInstance.post('login',data);
-            if(resoponse.status === 200){
-                localStorage.setItem('adminToken',resoponse.data.token);
-                this.$router.push({ name: "Home" });
-            }
-        }catch(e){
-            console.log(e);
-        }
-      
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
