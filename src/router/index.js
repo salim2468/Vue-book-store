@@ -19,78 +19,78 @@ import AuthorDetail from "../views/author/AuthorDetail.vue";
 
 const routes = [
   {
-    path: "/login",
+    path: "/admin/login",
     name: "Login",
     component: TheLogin,
      meta:{requiresAuth:false}
   },
   {
-    path: "/register",
+    path: "/admin/register",
     name: "Register",
     component: TheRegister,
      meta:{requiresAuth:false}
   },
   {
-    path: "/",
+    path: "/admin/",
     name: "TheDashboard",
     component: TheDashboard,
     redirect:{ name:'Home'},
      meta:{requiresAuth:true,},
     children:[
       {
-        path: "/",
+        path: "/admin/",
         name: "Home",
         component: TheHome,
       },
       {
-        path: "/authors",
+        path: "/admin/authors",
         name: "AllAuthors",
         component: AllAuthors,
       },
       {
-        path: "/add-author",
+        path: "/admin/add-author",
         name: "AddAuthor",
         component: AddAuthor,
       },
       {
-        path: "/search-author",
+        path: "/admin/search-author",
         name: "SearchAuthor",
         component: SearchAuthor,
       },
       {
-        path: "/author/:id",
+        path: "/admin/author/:id",
         name: "AuthorDetail",
         component: AuthorDetail,
         props: true,
       },
       {
-        path: "/about",
+        path: "/admin/about",
         name: "About",
         component: TheAbout,
       },
       {
-        path: "/books",
+        path: "/admin/books",
         name: "AllBooks",
         component: AllBooks,
       },
       {
-        path: "/search",
+        path: "/admin/search",
         name: "SearchBook",
         component: SearchBook,
       },
       {
-        path: "/add",
+        path: "/admin/add",
         name: "AddBook",
         component: AddBook,
       },
       {
-        path: "/book/:id",
+        path: "/admin/book/:id",
         name: "bookDetail",
         component: BookDetail,
         props: true,
       },
       {
-        path: "/book/update/:id",
+        path: "/admin/book/update/:id",
         name: "updateBook",
         component: UpdateBook,
         props: true,
