@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: "TheNav",
-};
-</script>
-
 <template>
   <nav
     class="navbar navbar-expand-lg sticky-top bg-body-tertiary"
@@ -34,13 +28,26 @@ export default {
         </ul>
       </div>
       <div>
-        <router-link
+      <span class="logout" @click="logout">Logout</span>
+        <!-- <router-link
           :to="{ name: 'Login' }"
           style="text-decoration: none; color: black"
           >Logout</router-link
-        >
+        > -->
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  name:'TheNav',
+  methods:{
+    logout(){
+      localStorage.clear();
+      this.$router.push({name:'Login'});
+    }
+  },
+}
+</script>
 

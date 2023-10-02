@@ -23,6 +23,7 @@
         Add
       </button>
     </form>
+    
   </div>
 </template>
 
@@ -41,7 +42,7 @@ export default {
       event.preventDefault();
       console.log("button clicked");
       if (
-        this.name === null
+        this.name === null || this.name === ""
       ) {
         alert("Please fill up form");
         return;
@@ -78,7 +79,6 @@ select {
 }
 .name-card {
   padding: 4px 8px;
-  /* border: 1px solid grey; */
   border-radius: 4px;
   margin: 0px 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
