@@ -158,6 +158,7 @@ export default {
   flex: 1;
   flex-direction: column;
   margin-top: 2px;
+  margin-right: 8px;
 }
 
 .form-container {

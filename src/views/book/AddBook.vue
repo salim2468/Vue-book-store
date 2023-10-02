@@ -133,6 +133,8 @@ export default {
   flex: 1;
   flex-direction: column;
   margin-top: 2px;
+    margin: 8px;
+
 }
 .form-container {
   background: #f8f8f8;
