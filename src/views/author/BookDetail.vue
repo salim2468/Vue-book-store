@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axiosInstance from "../axios/axios";
+import axiosInstance from "../../axios/axios";
 
 export default {
   name: "BookDetail",
@@ -109,7 +109,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .main-container {
   display: flex;
   flex: 1;

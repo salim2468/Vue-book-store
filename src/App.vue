@@ -1,18 +1,22 @@
 <template>
-  <TheNav />
+  
+    <router-view> </router-view>
+  
+  
+  <!-- <TheNav />
   <div class="con">
     <SideBar />
     <router-view> </router-view>
-  </div>
+  </div> -->
 </template>
 
 <script >
-import TheNav from "./components/TheNav.vue";
-import SideBar from "./components/SideBar.vue";
+// import TheNav from "./components/TheNav.vue";
+// import SideBar from "./components/SideBar.vue";
 
 export default {
   name: "App",
-  components: { TheNav, SideBar },
+  // components: { TheNav, SideBar },
 };
 </script>
 

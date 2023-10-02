@@ -4,7 +4,7 @@
       <li><h6 class="title">Book</h6></li>
       <ul>
         <li>
-          <router-link :to="{ name: 'Home' }" class="router-link">
+          <router-link :to="{ name: 'AllBooks' }" class="router-link">
             <span class="material-symbols-outlined"> import_contacts </span> All
             Books</router-link
           >
@@ -26,13 +26,13 @@
       <li><h6 class="title">Author</h6></li>
       <ul>
         <li>
-          <router-link :to="{ name: 'Home' }" class="router-link">
+          <router-link :to="{ name: 'AllAuthors' }" class="router-link">
             <span class="material-symbols-outlined"> import_contacts </span> All
             Authors</router-link
           >
         </li>
         <li>
-          <router-link :to="{ name: 'AddBook' }" class="router-link">
+          <router-link :to="{ name: 'AddAuthor' }" class="router-link">
             <span class="material-symbols-outlined"> add_circle </span>
             <span> Add Author</span></router-link
           >

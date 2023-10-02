@@ -81,8 +81,7 @@
 
 
 <script>
-import { onUpdated } from "vue";
-import axiosInstance from "../axios/axios";
+import axiosInstance from "../../axios/axios";
 
 export default {
   name: "UpdateBook",
@@ -153,7 +152,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .main-container {
   display: flex;
   flex: 1;
