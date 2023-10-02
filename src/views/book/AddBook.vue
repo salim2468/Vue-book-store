@@ -143,10 +143,10 @@ export default {
         name: this.name,
         description: this.description,
         publication_year: this.publication_year,
-        page_no :this.page_no,
-        isbn :this.isbn,
-        price :this.price,
-        language :this.language,
+        page_no: this.page_no,
+        isbn: this.isbn,
+        price: this.price,
+        language: this.language,
         authors: this.selectedAuthors,
       };
       try {
@@ -157,7 +157,7 @@ export default {
         this.page_no = "";
         this.isbn = "";
         this.price = "";
-        this.language ="";
+        this.language = "";
         this.selectedAuthors = [];
       } catch (e) {
         console.log(e);
@@ -188,7 +188,7 @@ export default {
   flex: 1;
   flex-direction: column;
   margin-top: 2px;
-  margin: 8px;
+  margin: 0 8px 8px 8px;
 }
 .form-container {
   background: #f8f8f8;

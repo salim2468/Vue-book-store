@@ -132,7 +132,7 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: 8px;
+  margin: 0 0px 8px 8px;
 }
 .top-container {
   background: #f8f8f8;

@@ -64,12 +64,8 @@ export default {
   margin-top: 2px;
   padding-top: 20px;
   padding-right: 20px;
+  box-shadow: 0px 1px 10px lightgray;
 }
-/* .background-circle{
-  background: grey;
-  border-radius:50% ;
-  padding: 4px;
-} */
 li {
   display: flex;
   align-items: center;
