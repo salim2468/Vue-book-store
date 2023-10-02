@@ -69,12 +69,19 @@ export default {
 li {
   display: flex;
   align-items: center;
+ 
 }
 .router-link {
   text-decoration: none;
   color: black;
   display: flex;
-  margin-top: 4px;
+ padding: 4px;
+}
+.router-link:hover{
+  background: lightgray;
+  padding: 4px 4px 4px 14px;
+  border-radius: 40px;
+
 }
 .material-symbols-outlined {
   margin-right: 10px; /* Add some spacing between the icon and the heading */

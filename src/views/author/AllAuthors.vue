@@ -13,11 +13,10 @@
 <script>
 import axiosInstance from "../../axios/axios";
 import AuthorCard from "../../components/AuthorCard.vue";
-import VueBasicAlert from 'vue-basic-alert'
 
 export default {
   name: "AllAuthors",
-  components:{AuthorCard,VueBasicAlert},
+  components:{AuthorCard},
   data() {
     return {
       loading: true,
