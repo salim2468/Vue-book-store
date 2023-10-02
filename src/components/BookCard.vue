@@ -1,7 +1,8 @@
 <template>
  <div class="card">
         <div class="image-container">
-          <img src="../assets/book.jpeg" />
+            <img  v-if="book.attributes.image_path" :src="book.attributes.image_path"   />
+          <img   v-else  src="../assets/book.jpeg" />
         </div>
         <br>
         <h6>{{ book.attributes.name }}</h6>
@@ -28,6 +29,7 @@ export default {
 }
 .card:hover{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: lightgray;
 }
 .image-container {
   width: 100%;

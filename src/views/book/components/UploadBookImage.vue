@@ -1,10 +1,11 @@
 <template>
   <div class="contianer">
-    <div class="top" @click="toogleForm()">
-      <p>Update Profile Image</p>
-    </div>
+    <!-- <div class="top" @click="toogleForm">
+      <p>Update Book Image</p>
+    </div> -->
+    <CircularIconButton :icon="'imagesmode'" @buttonPress="toogleForm"/>
     <div class="bottom" v-if="isShown">
-      Select Image of Author
+      Select Cover Image of Author
       <form enctype="multipart/form-data">
         <div class="mb-3">
           <input
@@ -24,12 +25,15 @@
 
 <script>
 import axiosInstance from "../../../axios/axios";
+import CircularIconButton from "../../../components/CircularIconButton.vue";
+
 
 export default {
   name: "UploadProfileImage",
   data() {
     return { isShown: false, selectedFile: null };
   },
+  components:{CircularIconButton},
   props: ["id"],
   methods: {
     toogleForm() {
@@ -45,7 +49,7 @@ export default {
       formData.append("image", this.selectedFile);
       formData.append("user_id", this.id);
       try {
-        const response = await axiosInstance.post("authors/img", formData, {
+        const response = await axiosInstance.post("books/img", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
