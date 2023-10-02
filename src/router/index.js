@@ -4,6 +4,8 @@ import TheAbout from "../views/TheAbout.vue";
 import AddBook from "../views/AddBook.vue";
 import SearchBook from "../views/SearchBook.vue";
 import BookDetail from "../views/BookDetail.vue";
+import UpdateBook from "../views/UpdateBook.vue";
+
 
 
 
@@ -32,6 +34,11 @@ const routes = [
       path: "/book/:id",
       name: "bookDetail",
       component: BookDetail,
+      props:true
+    }, {
+      path: "/book/update/:id",
+      name: "updateBook",
+      component: UpdateBook,
       props:true
     },
   ];
