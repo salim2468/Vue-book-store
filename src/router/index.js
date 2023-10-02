@@ -11,11 +11,9 @@ import SearchBook from "../views/book/SearchBook.vue";
 import BookDetail from "../views/book/BookDetail.vue";
 import UpdateBook from "../views/book/UpdateBook.vue";
 
-
 import AddAuthor from "../views/author/AddAuthor.vue";
 import AllAuthors from "../views/author/AllAuthors.vue";
-
-
+import SearchAuthor from "../views/author/SearchAuthor.vue";
 
 const routes = [
   {
@@ -43,6 +41,11 @@ const routes = [
         path: "/add-author",
         name: "AddAuthor",
         component: AddAuthor,
+      },
+      {
+        path: "/search-author",
+        name: "SearchAuthor",
+        component: SearchAuthor,
       },
       {
         path: "/about",
@@ -80,55 +83,6 @@ const routes = [
 
     ],
   },
-  // {
-  //   path: "/about",
-  //   name: "TheRegister",
-  //   component: TheRegister,
-  // },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   component: TheAbout,
-  // },
-  // ---------- Books section ----------
-  // {
-  //   path: "/books",
-  //   name: "AllBooks",
-  //   component: AllBooks,
-  // },
-  // {
-  //   path: "/search",
-  //   name: "SearchBook",
-  //   component: SearchBook,
-  // },
-  // {
-  //   path: "/add",
-  //   name: "AddBook",
-  //   component: AddBook,
-  // },
-  // {
-  //   path: "/book/:id",
-  //   name: "bookDetail",
-  //   component: BookDetail,
-  //   props: true,
-  // },
-  // {
-  //   path: "/book/update/:id",
-  //   name: "updateBook",
-  //   component: UpdateBook,
-  //   props: true,
-  // },
-  // ---------- Authors section ----------
-  // {
-  //   path: "/authors",
-  //   name: "AllAuthors",
-  //   component: AllAuthors,
-  // },
-  // {
-  //   path: "/authors",
-  //   name: "AllAuthors",
-  //   component: AllAuthors,
-  // }
 ];
 
 const router = createRouter({

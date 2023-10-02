@@ -9,6 +9,7 @@
           aria-describedby="emailHelp"
           v-model="searchedText"
           placeholder="Enter here"
+          required
         />
       </div>
       <button type="submit" class="btn btn-outline-secondary"  style="height:40px;" @click="getSearchedBook">Search</button>
@@ -41,9 +42,16 @@ export default {
   methods:{
     async getSearchedBook(e){
       e.preventDefault();
-      const resoponse = await axiosInstance.get(`books/search/{searchedText}`, {
-          params: { search: this.searchedText },
-        });
+      if(this.searchedText ===null || this.searchedText.length === 0) {
+        alert("Please type what you want to search");
+        return;
+      }
+      console.log(this.searchedText);
+      const resoponse = await axiosInstance.get(`books/search/${this.searchedText}`, 
+        // {
+        //   params: { search: this.searchedText },
+        // }
+        );
       if (resoponse.status === 200) {
         this.books = resoponse.data.data;
         console.log(this.books);

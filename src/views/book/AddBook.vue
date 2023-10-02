@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <!-- <p>Book</p> -->
+    <p>Add New Book</p>
     <form class="form-container">
       <div class="mb-3">
         <label class="form-label">Book Name</label>
@@ -54,11 +54,8 @@
       >
         Add
       </button>
-      {{ selectedAuthorsName }}
-
-      <!-- {{ selectedAuthors ? selectedAuthors: "chaia" }} -->
+      <!-- {{ selectedAuthorsName }} -->
     </form>
-    <!-- Name:{{ name }} Description:{{ description }} Publication:{{publication_year}} -->
   </div>
 </template>
 

@@ -38,7 +38,7 @@
           >
         </li>
         <li>
-          <router-link :to="{ name: 'SearchBook' }" class="router-link">
+          <router-link :to="{ name: 'SearchAuthor' }" class="router-link">
             <span class="material-symbols-outlined"> search </span>Search
             Author</router-link
           >
